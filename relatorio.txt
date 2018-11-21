@@ -1,0 +1,81 @@
+Suppose ?f? is uniformly Lipschitz continuous in y (meaning the Lipschitz constant can be taken independent of t) and continuous in t, then for some value  > 0, 
+there exists a unique solution y(t) to the initial value problem on the interval 
+{\displaystyle [t_{0}-\varepsilon ,t_{0}+\varepsilon ]} 
+[t_{0}-\varepsilon ,t_{0}+\varepsilon ]
+
+seja f uma função Lipscitz em y e C1 em t num retângulo aberto A X B 
+e y:A->R uma função de classe C1
+
+ 
+Pelo teorema de Picard-Lindelof a o problema de valor inicial
+y(t0)=y0
+y'(t)=f(t,y(t))   equação diferencial de primeira ordem
+tem uma e só uma solução local
+...
+
+Para algumas equações pode ser possível encontrar uma solução analítica
+contudo, muitas vezes, tais soluções não são possíveis de obter
+Daí para fins práticos (de engenharia no nosso caso) se recorrer a métodos numéricos e computacionais.
+Neste trabalho exploramos 5 destes métodos: 
+	Euler Progressivo;
+	Runge-Kutta 2; 
+	Runge-Kutta 3; 
+	Runge-Kutta 4; 
+	Runge-Kutta 3/8.
+
+Começamos por tomar a seguinte abordagem
+
+para a função y diferenciável em t
+temos a igualdade y(t+e) = y(t)+e*y'(t) para algum e positivo
+que pode ser aproximada por
+y(t+h) ~= y(t)+h*D_h(t)
+para um certo passo h e derivada aproximada D_h (a diferença finita)
+
+
+%%%%%%%%%%     Para fins práticos (métodos sequenciais)
+
+tomamos as sucessões
+t_n: t_0=t0 e t_(n+1)=t_n+h 
+y_n: y_0=y(t0) e y_(n+1)=y_n+h*D_h(t_n)
+
+tentando o melhor possível aproximar y_n ~= y(t_n)
+através da determinação do passo h e da diferença finita D_h que otimizam o resultado
+
+Os métodos de estudo consideram soluções diferentes para obter D_h de forma sistémica, prática e aproximada
+
+
+Runge Kutta 3
+	D_h = (k1 + 3*k3)/4
+
+	k_1 = f(t_n, y_n)
+        k_2 = f(x_n + h/3, y_n + h/3*k_1)
+        k_3 = f(x_n + 2*h/3, y_n + 2*h/3*k_2)
+
+Runge Kutta 4
+
+a diferença finita D_h é dada por
+	D_h(t_n) = (k_1+2*k_2+2*k_3+k_4)/6  %comentar a escolha das constantes 1,2,2,1,6
+
+	sendo os k_i(t_n) obtidos pela seguinte ordem e regras
+	k_1 = f(t_n,y_n)
+        k_2 = f(t_n+0.5*h, y_n+0.5*k_1)  %comentar a escolha das constantes 0.5
+        k_3 = f(t_n+0.5*h, y_n + 0.5*k_2)
+        k_4 = f(t_n+h, y_n+k_3)
+
+Runge Kutta 3/8
+
+Considera a mesma regra de obtenção dos k_i(t_n) que o RK4 mas
+
+a diferença finita D_h é dada por
+	D_h(t_n) = (k_1+3*k_2+3*k_3+k_4)/8;  %comentar
+
+
+
+Partindo então do par inicial (t0, y0)
+avançamos sucessivamente pela regra anterior
+
+toma-se a condição inicial (t0, y0)
+e por pela regra 
+y_(n+1) = y_n + D_h(t_n)*h
+avança-se indutivamente até ao ponto desejado, tfinal.
+
