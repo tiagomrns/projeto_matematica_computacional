@@ -7,11 +7,14 @@ function Hx2(fun, to, yo, tfinal, N, M)
         Erro(i)=abs(g(tfinal)-y);
     end
     x=1:M;
-    h=(tfinal-to)*2.^(-x);
-   	p=polyfit(log(h), log(Erro),1);
+    h=((tfinal-to)/N)*(2.^(-x));
+    
+  
     subplot(2,1,2);
+    %plot(h, Erro)
     loglog(h, Erro);
-    p(2)=short(p(2))
-    disp(p(2))
-    p(2)=short(p(2))
+    
+    p=polyfit(log(h), log(Erro),1);
+    Declive=p(1)
+    Declive_Arredondado=round(Declive)
 end

@@ -1,4 +1,4 @@
-function vetorimagens = RK3(fun,t0,yo,tfinal,N)
+function [vetorimagens, yfinal] = RK3(fun,t0,yo,tfinal,N)
     %   Metodo de Heun de terceira ordem (RK3) exercio a)
     close all    % numero de intervalos
     % np=n+1    % numero de intervalos
@@ -21,7 +21,9 @@ function vetorimagens = RK3(fun,t0,yo,tfinal,N)
     end
     solucao_exacta=3/2*exp(-x)+1/2*(sin(x)-cos(x));     %  solu��o exacta para comparar
     erro = y-solucao_exacta;   % erro absoluto
-%     plot(x,y,x,solucao_exacta)
+    subplot(2,1,1)
+	plot(x,y)
    %plot(x,y,'r+',x,solucao_exacta)
    vetorimagens = y;
+   yfinal=y(N);
 end

@@ -12,6 +12,7 @@ function [vetorimagens, yfinal] =RK4(fun, to, yo, tfinal, N)
         yy(i+1)=y+(k_1+2*k_2+2*k_3+k_4)/6;
     end
     
+    figure(2)
     subplot(2,1,1)
     plot(tt, yy)
     
